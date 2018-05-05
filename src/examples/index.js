@@ -1,17 +1,15 @@
-import './../Boilerplate/Boilerplate';
+import './../Gridmap/Gridmap';
+import data from './data.geojson';
 
 ymaps.ready(() => {
-    // eslint-disable-next-line no-unused-vars
-    const myMap = new ymaps.Map('map', {
-        center: [55.76, 37.64],
-        zoom: 10,
-        controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
-    });
-
-    ymaps.modules.require(['Boilerplate'], (Boilerplate) => {
-        const data = [[37.782551, -122.445368], [37.782745, -122.444586]];
-        const boilerplate = new Boilerplate(data);
-
-        boilerplate.setMap(myMap);
+    ymaps.modules.require(['Gridmap'], (Gridmap) => {
+        const el = document.getElementById('map');
+        const myMap = new ymaps.Map(el, {
+            center: [55.76, 37.64],
+            zoom: 10,
+            controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
+        });
+        // eslint-disable-next-line no-unused-vars
+        const gridmap = new Gridmap(el, myMap, data);
     });
 });
