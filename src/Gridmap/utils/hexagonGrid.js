@@ -7,7 +7,7 @@ export function cos(angle) {
     return Math.cos(Math.PI * angle / 180);
 }
 
-function hexagonGrid(map, zoom, R, offsetLeft, offsetTop, width, height) {
+function hexagonGrid(map, zoom, R, top, left, width, height) {
     const SIN_OF_SIXTY = sin(60);
     const colWidth = 1.5 * R;
     const rowHeight = 1.5 * R;
@@ -34,7 +34,7 @@ function hexagonGrid(map, zoom, R, offsetLeft, offsetTop, width, height) {
             ];
             const hexagonGlobals = hexagon
                 .map((point) => {
-                    return projection.fromGlobalPixels([offsetLeft + (point[0] * R), offsetTop + (point[1] * R)], zoom);
+                    return projection.fromGlobalPixels([top + (point[0] * R), left + (point[1] * R)], zoom);
                 })
                 .map((coords) => {
                     return [coords[1], coords[0]];

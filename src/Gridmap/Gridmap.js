@@ -1,16 +1,21 @@
 import 'mapsapi-polygonmap';
 import hexagonGrid from './utils/hexagonGrid';
 
-ymaps.modules.define('Gridmap', ['Polygonmap'], (provide, Polygonmap) => {
+ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygonmap, bounds) => {
     class Gridmap {
         constructor(el, map, points) {
-            const R = 20;
+            const coords = points.features.map(({geometry: {coordinates}}) => (coordinates));
+            const projection = map.options.get('projection');
             const zoom = map.getZoom();
-            const rect = el.getBoundingClientRect();
-            const center = map.getGlobalPixelCenter();
-            const offsetLeft = center[0] - (rect.width / 2);
-            const offsetTop = center[1] - (rect.height / 2);
-            const polygons = hexagonGrid(map, zoom, R, offsetLeft, offsetTop, rect.width, rect.height);
+            const [leftBottom, rightTop] = bounds.fromPoints(coords, projection);
+            leftBottom.reverse();
+            rightTop.reverse();
+            const [left, bottom] = projection.toGlobalPixels(leftBottom, zoom);
+            const [right, top] = projection.toGlobalPixels(rightTop, zoom);
+
+            const R = 20;
+
+            const polygons = hexagonGrid(map, zoom, R, left, top, right - left, bottom - top);
             const polygonmap = new Polygonmap({polygons, points});
             polygonmap.setMap(map);
         }
