@@ -1,4 +1,4 @@
-# Yandex Maps API Boilerplate Module
+# Yandex Maps API Gridmap Module
 
 Yandex.Maps API module for data visualization.
 
@@ -24,5 +24,5 @@ npm run lint
 For testing:
 
 ```bash
-npmr test
+npm test
 ```
