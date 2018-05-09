@@ -7,22 +7,20 @@ export function cos(angle) {
     return Math.cos(Math.PI * angle / 180);
 }
 
-function hexagonGrid(map, zoom, R, top, left, width, height) {
-    const SIN_OF_SIXTY = sin(60);
+export default function hexagonGrid(projection, zoom, R, offsetLeft, offsetTop, width, height) {
     const colWidth = 1.5 * R;
     const rowHeight = 1.5 * R;
     const cols = Math.floor((width + (R / 2)) / colWidth) + 1;
     const rows = Math.floor(height / rowHeight);
 
     const result = {type: 'FeatureCollection', features: []};
-    const projection = map.options.get('projection');
 
     let id = 0;
     for (let c = 0; c < cols; c++) {
         for (let r = 0; r < rows; r++) {
-            const horizontalShift = (c % 2 === 0) ? 0 : -1 * SIN_OF_SIXTY;
+            const horizontalShift = (c % 2 === 0) ? 0 : -1 * sin(60);
             const x = c * 1.5;
-            const y = r * (2 * SIN_OF_SIXTY) + horizontalShift;
+            const y = r * (2 * sin(60)) + horizontalShift;
             const hexagon = [
                 [cos(0) + x, sin(0) + y],
                 [cos(60) + x, sin(60) + y],
@@ -32,13 +30,17 @@ function hexagonGrid(map, zoom, R, top, left, width, height) {
                 [cos(300) + x, sin(300) + y],
                 [cos(0) + x, sin(0) + y]
             ];
+
             const hexagonGlobals = hexagon
-                .map((point) => {
-                    return projection.fromGlobalPixels([top + (point[0] * R), left + (point[1] * R)], zoom);
-                })
-                .map((coords) => {
-                    return [coords[1], coords[0]];
-                });
+                .map(([x, y]) =>
+                    projection.fromGlobalPixels(
+                        [
+                            offsetLeft + (x * R),
+                            offsetTop + (y * R)
+                        ],
+                        zoom
+                    )
+                );
 
             result.features.push({
                 type: 'Feature',
@@ -55,5 +57,3 @@ function hexagonGrid(map, zoom, R, top, left, width, height) {
     }
     return result;
 }
-
-export default hexagonGrid;
