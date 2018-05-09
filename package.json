@@ -59,6 +59,7 @@
     "url": "https://github.com/yandex-shri-fx-team/mapsapi-boilerplate/issues"
   },
   "dependencies": {
+    "lodash": "^4.17.10",
     "mapsapi-polygonmap": "git+https://github.com/yandex-shri-fx-team/mapsapi-polygonmap.git"
   }
 }
