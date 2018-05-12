@@ -27,6 +27,8 @@ For testing:
 npm test
 ```
 
+> mapsapi-gridmap@0.0.1 generate-docs /home/kirill/learn/mapsapi-gridmap
+> jsdoc2md src/Gridmap/Gridmap.js
 
 ## Classes
 
@@ -54,7 +56,7 @@ npm test
 **Kind**: global class  
 <a name="new_Gridmap_new"></a>
 
-### new Gridmap([options], grid)
+### new Gridmap([options])
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -62,7 +64,7 @@ npm test
 | [options.points] | <code>Array.&lt;IGeoObject&gt;</code> | Array of points to visualize |
 | [options.zoom] | <code>number</code> | zoom which will be used for the grid calculation |
 | [options.map] | <code>IMap</code> | map |
-| grid | [<code>GridOptions</code>](#GridOptions) | options which will be used in a grid calculation |
+| [options.grid] | [<code>GridOptions</code>](#GridOptions) | options which will be used in a grid calculation |
 
 <a name="GridBounds"></a>
 
