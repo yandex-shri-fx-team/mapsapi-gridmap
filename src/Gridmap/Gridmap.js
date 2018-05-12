@@ -12,6 +12,35 @@ ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygon
         return value;
     }
     class Gridmap {
+        /**
+         * @typedef {Object} GridBounds
+         * @property {number[]} leftBotom geographical coordinate of the left bottom point.
+         * @property {number[]} rigthTop geographical coordinate of the right top point.
+         */
+
+        /**
+         * @typedef {Object} GridOptions
+         * @property {string} type type of grid
+         * @property {GridBounds=} bounds bounds for grid
+         */
+
+        /**
+         * @typedef {Object} HexagonGripParams
+         * @property {number} bigRadius length of the big radius of a hexagon in pixels
+         */
+
+        /**
+         * @typedef {Object} SquareGripParams
+         * @property {number} sideLenght length of a side of square in pixels
+         */
+        /**
+         *
+         * @param {Object} [options] options
+         * @param {Array<IGeoObject>} [options.points] Array of points to visualize
+         * @param {number} [options.zoom] zoom which will be used for the grid calculation
+         * @param {IMap} [options.map] map
+         * @param {}
+         */
         constructor(options) {
             const map = getRequiredOption(options, 'map');
             const points = getRequiredOption(options, 'points');
