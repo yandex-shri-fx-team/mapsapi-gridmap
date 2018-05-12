@@ -22,6 +22,7 @@ ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygon
          * @typedef {Object} GridOptions
          * @property {string} type type of grid
          * @property {GridBounds=} bounds bounds for grid
+         * @property {HexagonGripParams|SquareGripParams} params params of grid
          */
 
         /**
@@ -39,7 +40,7 @@ ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygon
          * @param {Array<IGeoObject>} [options.points] Array of points to visualize
          * @param {number} [options.zoom] zoom which will be used for the grid calculation
          * @param {IMap} [options.map] map
-         * @param {}
+         * @param {GridOptions} grid options which will be used in a grid calculation
          */
         constructor(options) {
             const map = getRequiredOption(options, 'map');
