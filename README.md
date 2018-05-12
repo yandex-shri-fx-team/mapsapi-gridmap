@@ -51,10 +51,10 @@ npm test
 <a name="Gridmap"></a>
 
 ## Gridmap
-**Kind**: global class
+**Kind**: global class  
 <a name="new_Gridmap_new"></a>
 
-### new Gridmap([options])
+### new Gridmap([options], grid)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -62,12 +62,12 @@ npm test
 | [options.points] | <code>Array.&lt;IGeoObject&gt;</code> | Array of points to visualize |
 | [options.zoom] | <code>number</code> | zoom which will be used for the grid calculation |
 | [options.map] | <code>IMap</code> | map |
-|  |  |  |
+| grid | [<code>GridOptions</code>](#GridOptions) | options which will be used in a grid calculation |
 
 <a name="GridBounds"></a>
 
 ## GridBounds : <code>Object</code>
-**Kind**: global typedef
+**Kind**: global typedef  
 **Properties**
 
 | Name | Type | Description |
@@ -78,18 +78,19 @@ npm test
 <a name="GridOptions"></a>
 
 ## GridOptions : <code>Object</code>
-**Kind**: global typedef
+**Kind**: global typedef  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | type | <code>string</code> | type of grid |
 | [bounds] | [<code>GridBounds</code>](#GridBounds) | bounds for grid |
+| params | [<code>HexagonGripParams</code>](#HexagonGripParams) \| [<code>SquareGripParams</code>](#SquareGripParams) | params of grid |
 
 <a name="HexagonGripParams"></a>
 
 ## HexagonGripParams : <code>Object</code>
-**Kind**: global typedef
+**Kind**: global typedef  
 **Properties**
 
 | Name | Type | Description |
@@ -99,7 +100,7 @@ npm test
 <a name="SquareGripParams"></a>
 
 ## SquareGripParams : <code>Object</code>
-**Kind**: global typedef
+**Kind**: global typedef  
 **Properties**
 
 | Name | Type | Description |
