@@ -40,7 +40,7 @@ ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygon
          * @param {Array<IGeoObject>} [options.points] Array of points to visualize
          * @param {number} [options.zoom] zoom which will be used for the grid calculation
          * @param {IMap} [options.map] map
-         * @param {GridOptions} grid options which will be used in a grid calculation
+         * @param {GridOptions} [options.grid] options which will be used in a grid calculation
          */
         constructor(options) {
             const map = getRequiredOption(options, 'map');
