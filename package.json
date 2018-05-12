@@ -1,13 +1,11 @@
 {
-  "name": "mapsapi-boilerplate",
+  "name": "mapsapi-gridmap",
   "version": "0.0.1",
   "description": "Yandex.Maps API module for data visualization.",
   "keywords": [
     "yandex",
-    "maps",
-    "boilerplate"
+    "maps"
   ],
-  "main": "umd/boilerplate.min.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development --config webpack.development.js --open",
     "build": "npm run build-module && npm run build-examples",
@@ -15,7 +13,8 @@
     "build-examples": "webpack --mode production --config webpack.examples.js",
     "deploy": "gh-pages -d examples",
     "lint": "eslint src/**/*.js",
-    "test": "mocha -r babel-core/register test/{**/*,*}.test.js"
+    "test": "mocha -r babel-core/register test/{**/*,*}.test.js",
+    "generate-docs": "jsdoc2md src/Gridmap/Gridmap.js"
   },
   "husky": {
     "hooks": {
@@ -41,6 +40,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^1.0.0-rc.2",
+    "jsdoc-to-markdown": "^4.0.1",
     "json-loader": "^0.5.7",
     "lint-staged": "^7.0.4",
     "mocha": "^5.1.1",
@@ -50,12 +50,16 @@
   },
   "author": "",
   "license": "MIT",
-  "homepage": "https://github.com/yandex-shri-fx-team/mapsapi-boilerplate#readme",
+  "homepage": "https://github.com/yandex-shri-fx-team/mapsapi-gridmap#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yandex-shri-fx-team/mapsapi-boilerplate.git"
+    "url": "git+https://github.com/yandex-shri-fx-team/mapsapi-gridmap.git"
   },
   "bugs": {
-    "url": "https://github.com/yandex-shri-fx-team/mapsapi-boilerplate/issues"
+    "url": "https://github.com/yandex-shri-fx-team/mapsapi-gridmap/issues"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "mapsapi-polygonmap": "git+https://github.com/yandex-shri-fx-team/mapsapi-polygonmap.git"
   }
 }
