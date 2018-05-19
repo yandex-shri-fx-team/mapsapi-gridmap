@@ -30,7 +30,7 @@ ymaps.ready(() => {
                 zoom: 10,
                 controls: []
             });
-
+        
         // eslint-disable-next-line no-unused-vars
         const squareGridmap = new Gridmap({
             map: squareMap,
