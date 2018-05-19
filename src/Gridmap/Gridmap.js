@@ -1,4 +1,4 @@
-import 'mapsapi-polygonmap/src/Polygonmap/Polygonmap';
+import 'ymaps-polygonmap/src/Polygonmap';
 import hexagonGrid from './utils/hexagonGrid';
 import squareGrid from './utils/squareGrid';
 import get from 'lodash/get';
