@@ -1,8 +1,7 @@
 module.exports = {
-    mode: 'production',
-    entry: './src/Boilerplate/Boilerplate.js',
+    entry: './src/Gridmap.js',
     output: {
-        filename: 'boilerplate.min.js',
+        filename: 'gridmap.min.js',
         path: __dirname + '/umd'
     },
     module: {
