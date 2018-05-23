@@ -24,9 +24,7 @@ ymaps.ready(() => {
                     leftBottom: hexagonMap.getBounds()[0],
                     rightTop: hexagonMap.getBounds()[1]
                 }
-            }
-        },
-        {
+            },
             colorScheme: 'cdom',
             colorRanges: 10,
             colorOpacity: 0.8,
@@ -55,9 +53,7 @@ ymaps.ready(() => {
                     leftBottom: squareMap.getBounds()[0],
                     rightTop: squareMap.getBounds()[1]
                 }
-            }
-        },
-        {
+            },
             colorScheme: 'summer',
             colorRanges: 10,
             colorOpacity: 0.8,

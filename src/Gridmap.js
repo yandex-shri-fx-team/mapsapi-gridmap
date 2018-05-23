@@ -42,7 +42,7 @@ ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygon
          * @param {IMap} [options.map] map
          * @param {GridOptions} [options.grid] options which will be used in a grid calculation
          */
-        constructor(options, polygonmapOptions) {
+        constructor(options) {
             const map = getRequiredOption(options, 'map');
             const points = getRequiredOption(options, 'points');
             const zoom = getRequiredOption(options, 'zoom');
@@ -83,7 +83,7 @@ ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygon
                 }
             }
 
-            const polygonmap = new Polygonmap({polygons, points}, polygonmapOptions);
+            const polygonmap = new Polygonmap({polygons, points}, options);
             polygonmap.setMap(map);
         }
     }
