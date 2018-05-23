@@ -2,61 +2,76 @@
 
 Yandex.Maps API module for data visualization.
 
-## Usage
+**Gridmap** is a graphical representation of some spatial data, where depending on the number of entered points cell of grid (hexogon or square) are painted in different colors.
+`Gridmap` class allows to construct and display such representations over geographical maps.
 
-```bash
-npm i
-npm run build
-```
+## Loading
 
-For development:
+1. Put module source code ([gridmap.min.js](https://github.com/yandex-shri-fx-team/ymaps-gridmap/blob/master/umd/gridmap.min.js)) on your CDN.
 
-```bash
-npm run dev
-```
+2. Load both [Yandex Maps JS API 2.1](http://api.yandex.com/maps/doc/jsapi/) and module source code by adding following code into &lt;head&gt; section of your page:
 
-For linting:
+   ```html
+   <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+   <!-- Change my.cdn.tld to your CDN host name -->
+   <script src="http://my.cdn.tld/gridmap.min.js" type="text/javascript"></script>
+   ```
 
-```bash
-npm run lint
-```
+   If you use [GeoJSON](http://geojson.org) data:
 
-For testing:
+   ```html
+   <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU&coordOrder=longlat" type="text/javascript"></script>
+   <!-- Change my.cdn.tld to your CDN host name -->
+   <script src="http://my.cdn.tld/gridmap.min.js" type="text/javascript"></script>
+   ```
 
-```bash
-npm test
-```
+   If you use [npm](https://www.npmjs.com):
 
-> ymaps-gridmap@0.0.1 generate-docs /home/kirill/learn/ymaps-gridmap
-> jsdoc2md src/Gridmap/Gridmap.js
+   ```html
+   <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+   ```
 
-## Classes
+   ```bash
+   npm i --save git+https://github.com/yandex-shri-fx-team/ymaps-gridmap.git
+   ```
 
-<dl>
-<dt><a href="#Gridmap">Gridmap</a></dt>
-<dd></dd>
-</dl>
+   ```js
+   require('ymaps-gridmap');
 
-## Typedefs
+   // Or with babel
+   import 'ymaps-gridmap';
+   ```
 
-<dl>
-<dt><a href="#GridBounds">GridBounds</a> : <code>Object</code></dt>
-<dd></dd>
-<dt><a href="#GridOptions">GridOptions</a> : <code>Object</code></dt>
-<dd></dd>
-<dt><a href="#HexagonGripParams">HexagonGripParams</a> : <code>Object</code></dt>
-<dd></dd>
-<dt><a href="#SquareGripParams">SquareGripParams</a> : <code>Object</code></dt>
-<dd></dd>
-</dl>
+3. Get access to module functions by using [ymaps.modules.require](http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/modules.require.xml) method:
 
-<a name="Gridmap"></a>
+   ```js
+   ymaps.modules.require(['Gridmap'], function (Gridmap) {
+        var gridmap = new Gridmap();
+   });
+   ```
+
+<a name="module_Gridmap"></a>
 
 ## Gridmap
-**Kind**: global class  
-<a name="new_Gridmap_new"></a>
+Gridmap module.
 
-### new Gridmap([options])
+**Requires**: <code>module:util.bounds</code>
+
+* [Gridmap](#module_Gridmap)
+    * [Gridmap](#exp_module_Gridmap--Gridmap) ⏏
+        * [new Gridmap([options])](#new_module_Gridmap--Gridmap_new)
+        * [~GridBounds](#module_Gridmap--Gridmap..GridBounds) : <code>Object</code>
+        * [~GridOptions](#module_Gridmap--Gridmap..GridOptions) : <code>Object</code>
+        * [~HexagonGripParams](#module_Gridmap--Gridmap..HexagonGripParams) : <code>Object</code>
+        * [~SquareGripParams](#module_Gridmap--Gridmap..SquareGripParams) : <code>Object</code>
+
+<a name="exp_module_Gridmap--Gridmap"></a>
+
+### Gridmap ⏏
+**Kind**: Exported class
+<a name="new_module_Gridmap--Gridmap_new"></a>
+
+#### new Gridmap([options])
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -64,12 +79,12 @@ npm test
 | [options.points] | <code>Array.&lt;IGeoObject&gt;</code> | Array of points to visualize |
 | [options.zoom] | <code>number</code> | zoom which will be used for the grid calculation |
 | [options.map] | <code>IMap</code> | map |
-| [options.grid] | [<code>GridOptions</code>](#GridOptions) | options which will be used in a grid calculation |
+| [options.grid] | <code>GridOptions</code> | options which will be used in a grid calculation |
 
-<a name="GridBounds"></a>
+<a name="module_Gridmap--Gridmap..GridBounds"></a>
 
-## GridBounds : <code>Object</code>
-**Kind**: global typedef  
+#### Gridmap~GridBounds : <code>Object</code>
+**Kind**: inner typedef of [<code>Gridmap</code>](#exp_module_Gridmap--Gridmap)
 **Properties**
 
 | Name | Type | Description |
@@ -77,35 +92,70 @@ npm test
 | leftBotom | <code>Array.&lt;number&gt;</code> | geographical coordinate of the left bottom point. |
 | rigthTop | <code>Array.&lt;number&gt;</code> | geographical coordinate of the right top point. |
 
-<a name="GridOptions"></a>
+<a name="module_Gridmap--Gridmap..GridOptions"></a>
 
-## GridOptions : <code>Object</code>
-**Kind**: global typedef  
+#### Gridmap~GridOptions : <code>Object</code>
+**Kind**: inner typedef of [<code>Gridmap</code>](#exp_module_Gridmap--Gridmap)
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | type | <code>string</code> | type of grid |
-| [bounds] | [<code>GridBounds</code>](#GridBounds) | bounds for grid |
-| params | [<code>HexagonGripParams</code>](#HexagonGripParams) \| [<code>SquareGripParams</code>](#SquareGripParams) | params of grid |
+| [bounds] | <code>GridBounds</code> | bounds for grid |
+| params | <code>HexagonGripParams</code> \| <code>SquareGripParams</code> | params of grid |
 
-<a name="HexagonGripParams"></a>
+<a name="module_Gridmap--Gridmap..HexagonGripParams"></a>
 
-## HexagonGripParams : <code>Object</code>
-**Kind**: global typedef  
+#### Gridmap~HexagonGripParams : <code>Object</code>
+**Kind**: inner typedef of [<code>Gridmap</code>](#exp_module_Gridmap--Gridmap)
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | bigRadius | <code>number</code> | length of the big radius of a hexagon in pixels |
 
-<a name="SquareGripParams"></a>
+<a name="module_Gridmap--Gridmap..SquareGripParams"></a>
 
-## SquareGripParams : <code>Object</code>
-**Kind**: global typedef  
+#### Gridmap~SquareGripParams : <code>Object</code>
+**Kind**: inner typedef of [<code>Gridmap</code>](#exp_module_Gridmap--Gridmap)
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | sideLenght | <code>number</code> | length of a side of square in pixels |
 
+
+## Examples
+
+### Displaying gridmap over geographical map
+
+```js
+ymaps.modules.require(['Gridmap'], function (Gridmap) {
+    const dataPoints = {
+            type: 'FeatureCollection',
+            features: [{
+                id: 'id1',
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [37.782551, -122.445368]
+                }
+            }, {
+                id: 'id2',
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [37.782745, -122.444586]
+                }
+            }]
+        };
+    const data = {points: dataPoints};
+    const gridmap = new Gridmap(data);
+
+    gridmap.setMap(myMap);
+});
+```
+
+## Demo
+
+- https://yandex-shri-fx-team.github.io/ymaps-gridmap
