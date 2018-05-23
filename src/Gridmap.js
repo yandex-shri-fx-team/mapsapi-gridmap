@@ -83,7 +83,7 @@ ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygon
                 }
             }
 
-            const polygonmap = new Polygonmap({polygons, points});
+            const polygonmap = new Polygonmap({polygons, points}, options);
             polygonmap.setMap(map);
         }
     }
