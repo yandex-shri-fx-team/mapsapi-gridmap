@@ -19,8 +19,18 @@ ymaps.ready(() => {
                 type: 'hexagon',
                 params: {
                     bigRadius: 20
+                },
+                bounds: {
+                    leftBottom: hexagonMap.getBounds()[0],
+                    rightTop: hexagonMap.getBounds()[1]
                 }
             }
+        },
+        {
+            colorScheme: 'cdom',
+            colorRanges: 10,
+            colorOpacity: 0.8,
+            strokeColor: '#666'
         });
 
         const squareMap = new ymaps.Map(
@@ -46,6 +56,14 @@ ymaps.ready(() => {
                     rightTop: squareMap.getBounds()[1]
                 }
             }
+        },
+        {
+            colorScheme: 'summer',
+            colorRanges: 10,
+            colorOpacity: 0.8,
+            strokeColor: '#fff',
+            strokeWidth: 1.5,
+            filterEmptyPolygons: true
         });
     });
 });
