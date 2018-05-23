@@ -6,6 +6,7 @@
     "yandex",
     "maps"
   ],
+  "main": "src/Gridmap.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development --config webpack.examples.js --open",
     "build": "npm run build-module && npm run build-examples",
@@ -14,7 +15,7 @@
     "deploy": "gh-pages -d examples",
     "lint": "eslint src/**/*.js",
     "test": "mocha -r babel-core/register test/{**/*,*}.test.js",
-    "generate-docs": "jsdoc2md src/Gridmap/Gridmap.js"
+    "docs": "jsdoc2md --template .jsdoc/README.md src/*.js > README.md"
   },
   "husky": {
     "hooks": {
