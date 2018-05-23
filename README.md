@@ -27,7 +27,7 @@ For testing:
 npm test
 ```
 
-> mapsapi-gridmap@0.0.1 generate-docs /home/kirill/learn/mapsapi-gridmap
+> ymaps-gridmap@0.0.1 generate-docs /home/kirill/learn/ymaps-gridmap
 > jsdoc2md src/Gridmap/Gridmap.js
 
 ## Classes
