@@ -2,8 +2,16 @@ import 'ymaps-polygonmap/src/Polygonmap';
 import hexagonGrid from './utils/hexagonGrid';
 import squareGrid from './utils/squareGrid';
 import get from 'lodash/get';
-
-ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygonmap, bounds) => {
+/**
+ * Gridmap module.
+ *
+ * @module Gridmap
+ * @requires util.bounds
+ */
+ymaps.modules.define('Gridmap', [
+    'Polygonmap',
+    'util.bounds'
+], (provide, Polygonmap, bounds) => {
     function getRequiredOption(options, path) {
         const value = get(options, path);
         if (!value) {
@@ -11,37 +19,40 @@ ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygon
         }
         return value;
     }
+
+    /**
+     * @typedef {Object} GridBounds
+     * @property {number[]} leftBotom geographical coordinate of the left bottom point.
+     * @property {number[]} rigthTop geographical coordinate of the right top point.
+     */
+
+    /**
+     * @typedef {Object} GridOptions
+     * @property {string} type type of grid
+     * @property {GridBounds=} bounds bounds for grid
+     * @property {HexagonGripParams|SquareGripParams} params params of grid
+     */
+
+    /**
+     * @typedef {Object} HexagonGripParams
+     * @property {number} bigRadius length of the big radius of a hexagon in pixels
+     */
+
+    /**
+     * @typedef {Object} SquareGripParams
+     * @property {number} sideLenght length of a side of square in pixels
+     */
+
+    /**
+     *
+     * @param {Object} [options] options
+     * @param {Array<IGeoObject>} [options.points] Array of points to visualize
+     * @param {number} [options.zoom] zoom which will be used for the grid calculation
+     * @param {IMap} [options.map] map
+     * @param {GridOptions} [options.grid] options which will be used in a grid calculation
+     * @alias module:Gridmap
+     */
     class Gridmap {
-        /**
-         * @typedef {Object} GridBounds
-         * @property {number[]} leftBotom geographical coordinate of the left bottom point.
-         * @property {number[]} rigthTop geographical coordinate of the right top point.
-         */
-
-        /**
-         * @typedef {Object} GridOptions
-         * @property {string} type type of grid
-         * @property {GridBounds=} bounds bounds for grid
-         * @property {HexagonGripParams|SquareGripParams} params params of grid
-         */
-
-        /**
-         * @typedef {Object} HexagonGripParams
-         * @property {number} bigRadius length of the big radius of a hexagon in pixels
-         */
-
-        /**
-         * @typedef {Object} SquareGripParams
-         * @property {number} sideLenght length of a side of square in pixels
-         */
-        /**
-         *
-         * @param {Object} [options] options
-         * @param {Array<IGeoObject>} [options.points] Array of points to visualize
-         * @param {number} [options.zoom] zoom which will be used for the grid calculation
-         * @param {IMap} [options.map] map
-         * @param {GridOptions} [options.grid] options which will be used in a grid calculation
-         */
         constructor(options) {
             const map = getRequiredOption(options, 'map');
             const points = getRequiredOption(options, 'points');
@@ -84,6 +95,7 @@ ymaps.modules.define('Gridmap', ['Polygonmap', 'util.bounds'], (provide, Polygon
             }
 
             const polygonmap = new Polygonmap({polygons, points}, options);
+
             polygonmap.setMap(map);
         }
     }
