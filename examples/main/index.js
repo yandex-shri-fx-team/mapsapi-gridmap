@@ -1,5 +1,5 @@
-import './../Gridmap/Gridmap';
-import data from './data-latlong.geojson';
+import '../../src/Gridmap';
+import data from '../data/data-latlong.geojson';
 
 ymaps.ready(() => {
     ymaps.modules.require(['Gridmap'], (Gridmap) => {
@@ -8,7 +8,7 @@ ymaps.ready(() => {
             {
                 center: [55.76, 37.64],
                 zoom: 10,
-                controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
+                controls: []
             });
         // eslint-disable-next-line no-unused-vars
         const hexagonGridmap = new Gridmap({
@@ -28,7 +28,7 @@ ymaps.ready(() => {
             {
                 center: [55.76, 37.64],
                 zoom: 10,
-                controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
+                controls: []
             });
 
         // eslint-disable-next-line no-unused-vars
@@ -42,8 +42,8 @@ ymaps.ready(() => {
                     sideLength: 20
                 },
                 bounds: {
-                    leftBottom: [55.58709262753493, 37.33818169628907],
-                    rightTop: [55.89311385727207, 37.848359308593736]
+                    leftBottom: squareMap.getBounds()[0],
+                    rightTop: squareMap.getBounds()[1]
                 }
             }
         });
