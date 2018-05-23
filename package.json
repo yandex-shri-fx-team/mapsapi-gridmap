@@ -4,7 +4,8 @@
   "description": "Yandex.Maps API module for data visualization.",
   "keywords": [
     "yandex",
-    "maps"
+    "maps",
+    "gridmap"
   ],
   "main": "src/Gridmap.js",
   "scripts": {
@@ -14,7 +15,7 @@
     "build-examples": "webpack --mode production --config webpack.examples.js",
     "deploy": "gh-pages -d examples",
     "lint": "eslint src/**/*.js",
-    "test": "mocha -r babel-core/register test/{**/*,*}.test.js",
+    "test": "nyc mocha -r babel-core/register src/**/*.test.js",
     "docs": "jsdoc2md --template .jsdoc/README.md src/*.js > README.md"
   },
   "husky": {
@@ -24,8 +25,7 @@
   },
   "lint-staged": {
     "**/*.js": [
-      "npm run lint",
-      "git add"
+      "npm run lint"
     ]
   },
   "devDependencies": {
@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.10",
+    "nyc": "^11.8.0",
     "ymaps-polygonmap": "git+https://github.com/yandex-shri-fx-team/ymaps-polygonmap.git"
   }
 }
