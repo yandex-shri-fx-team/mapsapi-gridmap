@@ -76,8 +76,7 @@ ymaps.modules.require(['Gridmap'], function (Gridmap) {
                 }
             }]
         };
-    const data = {points: dataPoints};
-    const gridmap = new Gridmap(data);
+    const gridmap = new Gridmap(dataPoints);
 
     gridmap.setMap(myMap);
 });
