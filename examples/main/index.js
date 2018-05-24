@@ -3,6 +3,7 @@ import data from '../data/data-latlong.geojson';
 
 ymaps.ready(() => {
     ymaps.modules.require(['Gridmap'], (Gridmap) => {
+        // eslint-disable-next-line no-unused-vars
         const hexagonMap = new ymaps.Map(
             document.getElementById('hexagonMap'),
             {
@@ -10,10 +11,8 @@ ymaps.ready(() => {
                 zoom: 10,
                 controls: []
             });
-        // eslint-disable-next-line no-unused-vars
-        const hexagonGridmap = new Gridmap({
-            map: hexagonMap,
-            points: data,
+
+        const hexagonGridmap = new Gridmap(data, {
             zoom: 10,
             grid: {
                 type: 'hexagon',
@@ -31,6 +30,9 @@ ymaps.ready(() => {
             strokeColor: '#666'
         });
 
+        hexagonGridmap.setMap(hexagonMap);
+
+        // eslint-disable-next-line no-unused-vars
         const squareMap = new ymaps.Map(
             document.getElementById('squareMap'),
             {
@@ -38,11 +40,9 @@ ymaps.ready(() => {
                 zoom: 10,
                 controls: []
             });
-        
+
         // eslint-disable-next-line no-unused-vars
-        const squareGridmap = new Gridmap({
-            map: squareMap,
-            points: data,
+        const squareGridmap = new Gridmap(data, {
             zoom: 10,
             grid: {
                 type: 'square',
@@ -61,5 +61,7 @@ ymaps.ready(() => {
             strokeWidth: 1.5,
             filterEmptyPolygons: true
         });
+
+        squareGridmap.setMap(squareMap);
     });
 });

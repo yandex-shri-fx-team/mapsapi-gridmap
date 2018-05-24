@@ -55,15 +55,19 @@ Yandex.Maps API module for data visualization.
 ## Gridmap
 Gridmap module.
 
-**Requires**: <code>module:util.bounds</code>
+**Requires**: <code>module:Polygonmap</code>, <code>module:util.bounds</code>
 
 * [Gridmap](#module_Gridmap)
     * [Gridmap](#exp_module_Gridmap--Gridmap) ⏏
-        * [new Gridmap([options])](#new_module_Gridmap--Gridmap_new)
-        * [~GridBounds](#module_Gridmap--Gridmap..GridBounds) : <code>Object</code>
-        * [~GridOptions](#module_Gridmap--Gridmap..GridOptions) : <code>Object</code>
-        * [~HexagonGripParams](#module_Gridmap--Gridmap..HexagonGripParams) : <code>Object</code>
-        * [~SquareGripParams](#module_Gridmap--Gridmap..SquareGripParams) : <code>Object</code>
+        * [new Gridmap([data], [options])](#new_module_Gridmap--Gridmap_new)
+        * _instance_
+            * [.setMap(map)](#module_Gridmap--Gridmap+setMap) ⇒ <code>Polygonmap</code>
+            * [.getMap()](#module_Gridmap--Gridmap+getMap) ⇒ <code>Map</code>
+        * _inner_
+            * [~GridBounds](#module_Gridmap--Gridmap..GridBounds) : <code>Object</code>
+            * [~GridOptions](#module_Gridmap--Gridmap..GridOptions) : <code>Object</code>
+            * [~HexagonGripParams](#module_Gridmap--Gridmap..HexagonGripParams) : <code>Object</code>
+            * [~SquareGripParams](#module_Gridmap--Gridmap..SquareGripParams) : <code>Object</code>
 
 <a name="exp_module_Gridmap--Gridmap"></a>
 
@@ -71,16 +75,45 @@ Gridmap module.
 **Kind**: Exported class
 <a name="new_module_Gridmap--Gridmap_new"></a>
 
-#### new Gridmap([options])
+#### new Gridmap([data], [options])
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [options] | <code>Object</code> | options |
-| [options.points] | <code>Array.&lt;IGeoObject&gt;</code> | Array of points to visualize |
+| [data] | <code>Object</code> | Points, GeoJSON FeatureCollections. |
+| [options] | <code>Object</code> | Options for customization. |
+| options.colorRanges | <code>number</code> \| <code>array</code> | count of ranges or array of custom ranges |
+| options.colorScheme | <code>string</code> \| <code>array</code> | preset for colorize or array of custom colors |
+| options.colorOpacity | <code>number</code> | opacity of polygon |
+| options.colorEmptyPolygon | <code>string</code> | color of polygon where points count equal 0 |
+| options.strokeColor | <code>string</code> | color for polygon stroke |
+| options.strokeWidth | <code>number</code> | width for polygon stroke |
+| options.showLegend | <code>boolean</code> | flag to show color legend |
+| options.legendTemplate | <code>function</code> | receives object {color: value} returns html legend template |
+| options.legendPosition | <code>object</code> | position of legend, you can only change the top or bottom and right or left |
 | [options.zoom] | <code>number</code> | zoom which will be used for the grid calculation |
-| [options.map] | <code>IMap</code> | map |
 | [options.grid] | <code>GridOptions</code> | options which will be used in a grid calculation |
 
+<a name="module_Gridmap--Gridmap+setMap"></a>
+
+#### gridmap.setMap(map) ⇒ <code>Polygonmap</code>
+Set Map instance to render Polygonmap object.
+
+**Kind**: instance method of [<code>Gridmap</code>](#exp_module_Gridmap--Gridmap)
+**Returns**: <code>Polygonmap</code> - Self-reference.
+**Access**: public
+
+| Param | Type | Description |
+| --- | --- | --- |
+| map | <code>Map</code> | Map instance. |
+
+<a name="module_Gridmap--Gridmap+getMap"></a>
+
+#### gridmap.getMap() ⇒ <code>Map</code>
+Get the Map instance.
+
+**Kind**: instance method of [<code>Gridmap</code>](#exp_module_Gridmap--Gridmap)
+**Returns**: <code>Map</code> - Reference to Map instance.
+**Access**: public
 <a name="module_Gridmap--Gridmap..GridBounds"></a>
 
 #### Gridmap~GridBounds : <code>Object</code>
@@ -149,8 +182,7 @@ ymaps.modules.require(['Gridmap'], function (Gridmap) {
                 }
             }]
         };
-    const data = {points: dataPoints};
-    const gridmap = new Gridmap(data);
+    const gridmap = new Gridmap(dataPoints);
 
     gridmap.setMap(myMap);
 });
