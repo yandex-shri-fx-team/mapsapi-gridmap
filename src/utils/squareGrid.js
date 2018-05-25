@@ -1,3 +1,13 @@
+/**
+ * squaresGrid
+ * @param {IProjection} projection Projection of map.
+ * @param {number} zoom Zoom of map.
+ * @param {number} sideLength Side legth of square.
+ * @param {number} offsetLeft Offset left.
+ * @param {number} offsetTop Offset top.
+ * @param {number} width Width.
+ * @param {number} height Height.
+ */
 export default function squaresGrid(projection, zoom, sideLength, offsetLeft, offsetTop, width, height) {
     const cols = width / sideLength;
     const rows = height / sideLength;

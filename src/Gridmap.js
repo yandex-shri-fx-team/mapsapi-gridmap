@@ -13,6 +13,12 @@ ymaps.modules.define('Gridmap', [
     'Polygonmap',
     'util.bounds'
 ], (provide, Polygonmap, bounds) => {
+    /**
+     * getRequiredOption
+     * @param {Object} options Options.
+     * @param {string} path Name of option.
+     * @returns {*} Value of option.
+     */
     function getRequiredOption(options, path) {
         const value = get(options, path);
         if (!value) {
@@ -23,43 +29,71 @@ ymaps.modules.define('Gridmap', [
 
     /**
      * @typedef {Object} GridBounds
-     * @property {number[]} leftBotom geographical coordinate of the left bottom point.
-     * @property {number[]} rigthTop geographical coordinate of the right top point.
+     * @property {number[]} leftBotom Geographical coordinate of the left bottom point.
+     * @property {number[]} rigthTop Geographical coordinate of the right top point.
      */
 
     /**
      * @typedef {Object} GridOptions
-     * @property {string} type type of grid
-     * @property {GridBounds=} bounds bounds for grid
-     * @property {HexagonGripParams|SquareGripParams} params params of grid
+     * @property {string} type Type of grid.
+     * @property {GridBounds=} bounds Bounds for grid.
+     * @property {HexagonGripParams|SquareGripParams} params Params of grid.
      */
 
     /**
      * @typedef {Object} HexagonGripParams
-     * @property {number} bigRadius length of the big radius of a hexagon in pixels
+     * @property {number} bigRadius Length of the big radius of a hexagon in pixels.
      */
 
     /**
      * @typedef {Object} SquareGripParams
-     * @property {number} sideLenght length of a side of square in pixels
+     * @property {number} sideLenght Length of a side of square in pixels.
      */
 
     /**
      *
      * @param {Object} [data]  Points, GeoJSON FeatureCollections.
+     * @param {Object} data.polygons GeoJSON FeatureCollections.
+     * @param {Object} data.points GeoJSON FeatureCollections.
      * @param {Object} [options] Options for customization.
-     * @param {number|array} options.colorRanges count of ranges or array of custom ranges
-     * @param {string|array} options.colorScheme preset for colorize or array of custom colors
-     * @param {number} options.colorOpacity opacity of polygon
-     * @param {string} options.colorEmptyPolygon color of polygon where points count equal 0
-     * @param {string} options.strokeColor color for polygon stroke
-     * @param {number} options.strokeWidth width for polygon stroke
-     * @param {boolean} options.showLegend flag to show color legend
-     * @param {function} options.legendTemplate receives object {color: value} returns html legend template
-     * @param {object} options.legendPosition position of legend,
-     * you can only change the top or bottom and right or left
-     * @param {number} [options.zoom] zoom which will be used for the grid calculation
-     * @param {GridOptions} [options.grid] options which will be used in a grid calculation
+     * @param {number} [options.zoom] Zoom which will be used for the grid calculation.
+     * @param {GridOptions} [options.grid] Options which will be used in a grid calculation.
+     * @param {GridOptions} [options.grid.type] Type of grid. Can be "hexagon" | "square".
+     * @param {GridParamsOptions} [options.grid.params] Options which will be used in a grid render
+     * @param {number} [options.grid.params.bigRadius] Radius of hexagon.
+     * @param {number} [options.grid.params.sideLength] Side length of square.
+     * @param {GridBoundsOptions} [options.grid.bouds] Options of bound for render grid.
+     * @param {number} [options.grid.bouds] Options of bound for render grid.
+     * @param {Array} [options.grid.bouds.leftBottom] Coordinates of left bottom point of bound.
+     * @param {Array} [options.grid.bouds.topRight] Coordinates of right top point of bound.
+     * @param {function} options.mapper Function of iterative transformation of features.
+     * @param {string} [options.colorBy=points] Calculate the color by points | weight.
+     * @param {string} [options.colorByWeightProp=weight] Prop name in data object, for weight value.
+     * If colorBy is "weight".
+     * @param {string} [options.colorByWeightType=middle] Type of calculate color by weight. Can be middle | maximum
+     * @param {number|array} [options.colorRanges=3] Count of ranges or array of custom ranges.
+     * @param {string|array} [options.colorScheme=[rgb(255, 90, 76), rgb(224, 194, 91), rgb(108, 206, 92)]]
+     * Preset for colorize or array of custom colors.
+     * @param {number} [options.colorOpacity=1] Opacity of polygon.
+     * @param {string} [options.colorEmptyPolygon=rgba(255, 255, 255, 0)] Color of polygon where points count equal 0.
+     * @param {string} [options.strokeColor=#fff] Color of polygon stroke.
+     * @param {number} [options.strokeWidth=2] Width of polygon stroke.
+     * @param {boolean} [options.showLegend=true] Flag to show color legend.
+     * @param {function} options.legendTemplate Receives object {color: value} returns html legend template.
+     * @param {object} [options.legendPosition=top: 10, right: 10] Position of legend,
+     * you can only change the top or bottom and right or left.
+     * @param {function} [options.filter=undefined] Function for custom filter polygons with points.
+     * @param {boolean} [options.filterEmptyPolygons=false] Flag for show polygon with count of points equal 0.
+     * @param {function} options.onMouseEnter Handler for mouseEnter event.
+     * @param {function} options.onMouseLeave Handler for mouseLeave event.
+     * @param {function} options.onClick Handler for click event.
+     * @param {function} options.balloonContent Function for render content of baloon. Recieves object with
+     * properties of polygon.
+     * @param {number} [options.opacityHover=0.9] Number of opacity on polygon hover.
+     * @param {number} [options.strokeWidthHover=2] Number of stroke width on polygon hover.
+     * @param {number} [options.opacityActive=1] Number of opacity on polygon active.
+     * @param {number} [options.strokeWidthActive=3] Number of stroke width on polygon active.
+     * @param {boolean} [options.interactivity=true] Flag for enable interactivity.
      * @alias module:Gridmap
      */
     class Gridmap {
