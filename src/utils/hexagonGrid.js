@@ -1,12 +1,33 @@
-
+/**
+ * Get sin of angle
+ *
+ * @param {number} angle angle
+ * @return {number} sin of angle
+ */
 export function sin(angle) {
     return Math.sin(Math.PI * angle / 180);
 }
 
+/**
+ * Get cos of angle
+ *
+ * @param {number} angle angle
+ * @return {number} cos of angle
+ */
 export function cos(angle) {
     return Math.cos(Math.PI * angle / 180);
 }
 
+/**
+ * hexagonGrid
+ * @param {IProjection} projection Projection of map.
+ * @param {number} zoom Zoom of map.
+ * @param {number} R Hexagon radius.
+ * @param {number} offsetLeft Offset left.
+ * @param {number} offsetTop Offset top.
+ * @param {number} width Width.
+ * @param {number} height Height.
+ */
 export default function hexagonGrid(projection, zoom, R, offsetLeft, offsetTop, width, height) {
     const colWidth = 1.5 * R;
     const rowHeight = 1.5 * R;

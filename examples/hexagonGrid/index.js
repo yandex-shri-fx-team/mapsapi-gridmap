@@ -24,7 +24,7 @@ ymaps.ready(() => {
             },
             colorScheme: 'cdom',
             colorRanges: 10,
-            colorOpacity: 0.8,
+            fillOpacity: 0.8,
             strokeColor: '#fff',
             strokeWidth: 1.5,
             filterEmptyPolygons: true
