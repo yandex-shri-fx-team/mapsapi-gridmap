@@ -6,7 +6,7 @@ ymaps.ready(() => {
         // eslint-disable-next-line no-unused-vars
         const myMap = new ymaps.Map('map', {
             center: [37.64, 55.76],
-            zoom: 10,
+            zoom: 13,
             controls: ['zoomControl', 'typeSelector']
         });
 
@@ -15,7 +15,7 @@ ymaps.ready(() => {
             grid: {
                 type: 'hexagon',
                 params: {
-                    bigRadius: 20
+                    bigRadius: 2
                 },
                 bounds: {
                     leftBottom: myMap.getBounds()[0],
