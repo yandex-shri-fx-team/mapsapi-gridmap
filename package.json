@@ -67,6 +67,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.10",
-    "ymaps-polygonmap": "git+https://github.com/yandex-shri-fx-team/ymaps-polygonmap.git"
+    "ymaps-polygonmap": "^1.0.1"
   }
 }
